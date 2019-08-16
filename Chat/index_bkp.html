@@ -1,0 +1,141 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Web Random Tururu</title>
+    <meta name="google-signin-client_id"
+          content="1085646747577-fs1oskls25khvmag2fhcfuubjr93quc2.apps.googleusercontent.com">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilos/estilos.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+
+<body class="body_ingreso">
+
+<div class="container row valign-wrapper">
+    <div class="col s6 row" style="background: rgba(255, 255, 255, 0.5);border-radius: 20px 20px 20px 20px;">
+        <div class="center-align">
+            <i class="large material-icons" style="color: rgba(0,105,6,0.65);">account_circle</i>
+        </div>
+        <div class="center-align">
+            <h4 class="">INICIAR SESIÓN</h4>
+            <!--============================ INICIO FORMULARIO =========================-->
+            <div class="" style="padding-top: 20px;">
+                <div class="">
+                    <input name="usr" id="usr" type="text" class="center-align"
+                           placeholder="Usuario"
+                           aria-label="Username"
+                           style="background: rgba(112,112,112,0.47);border-radius: 20px 20px 20px 20px;">
+                </div>
+            </div>
+            <div class="">
+                <div class="">
+                    <input name="contrasenia" id="contrasenia" type="password" class="center-align"
+                           placeholder="Contraseña"
+                           aria-label="Username" aria-describedby="basic-addon1"
+                           style="background: rgba(0,0,0,0.26);border-radius: 20px 20px 20px 20px;">
+
+                </div>
+            </div>
+            <div style="padding-top: 20px;">
+                <button type='button' id="ingreso" class="btn" style="background: rgba(0,105,6,0.65)">Ingresar</button>
+            </div>
+            <!--============================ FIN FORMULARIO =========================-->
+        </div>
+        <div class="center-align" style="font-size: 13px;padding-top: 20px;">
+            <div class="row">
+                <a href='#' style="color: #474747;">
+                    <i class="" style="color:#ce8d0a;"></i>¿Nuevo usuario?</a>
+                <a href='#' style="color: #474747;">
+                    <i class="" style="color:#ce040c;"></i>¿Olvido su contraseña? </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--============================ INICIO SCRIPTS =========================-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script>
+    $(document).ready(function () {
+        $('#ingreso').click(function () {
+
+            //Checkeo de formulario
+            if ($('#usr').val().trim() == "" && $('#contrasenia').val() == "") {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Campos vacios!',
+                })
+            } else {
+                if ($('#usr').val().trim() == "") {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Complete el usuario!',
+                    })
+                }
+                if ($('#contrasenia').val() == "") {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Completa la contraseña!',
+                    })
+                }
+            }
+
+
+            if ($('#contrasenia').val() != "" && $('#usr').val().trim() != "") { //Tamos ok, proseguir
+                $.ajax({
+                    type: 'POST',
+                    url: 'archivos_proceso/proceso_login.php',
+                    data: {
+                        'usr': $('#usr').val(),
+                        'contrasenia': $('#contrasenia').val(),
+                    },
+                    success: function (response) {
+                        swal.close();
+                        Swal.hideLoading();
+                        console.log(response);
+                        //Checkeo de errores
+                        if (response == 0) {
+                            Swal.fire({
+                                type: 'error',
+                                title: 'Oops...',
+                                text: 'No existe un perfil con el usuario ingresado.',
+                            })
+                        } else if (response == 2) {
+                            Swal.fire({
+                                type: 'error',
+                                title: 'Error!',
+                                text: 'Usuario o contraseña no son validos.',
+                            })
+                        }
+
+                        if (response == 1) {
+                            //Proceso de logeo
+                            window.location.replace("main.php");
+                        }
+                    }
+
+                });
+            }
+        });
+    });
+
+
+</script>
+
+
+<!--============================ FIN SCRIPTS =========================-->
+
+</body>
+</html>

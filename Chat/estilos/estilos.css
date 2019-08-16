@@ -1,0 +1,95 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+}
+
+
+.body_ingreso{
+    background: url("img/fondo_ingreso.jpeg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif!important;
+}
+
+.body_main{
+    /*background: url("img/fondo_main.jpg") no-repeat center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif!important;
+}
+
+.container{
+    height: 100%!important;
+    width: 100% !important;
+
+}
+
+.cuerpo_login{
+    padding: 30px!important;
+}
+
+
+/* LOGIN  https://codepen.io/codot/pen/BorNdz */
+
+h4 {
+    font-weight: bold;
+    color: #fff;
+}
+.close {
+    color: #fff;
+    transform: scale(1.2)
+}
+.modal-content-gradiente {
+    font-weight: bold;
+    background: linear-gradient(to bottom right,#F87E7B,#B05574);
+}
+.form-control {
+    margin: 1em 0;
+}
+.form-control:hover, .form-control:focus {
+    box-shadow: none;
+    border-color: #fff;
+}
+.username, .password {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 2px solid #eee;
+    padding-left: 0;
+    font-weight: normal;
+    background: transparent;
+}
+.form-control::-webkit-input-placeholder {
+    color: #eee;
+}
+.form-control:focus::-webkit-input-placeholder {
+    font-weight: bold;
+    color: #fff;
+}
+.login {
+    padding: 6px 20px;
+    border-radius: 20px;
+    background: none;
+    border: 2px solid #FAB87F;
+    color: #FAB87F;
+    font-weight: bold;
+    transition: all .5s;
+    margin-top: 1em;
+}
+.login:hover {
+    background: #FAB87F;
+    color: #fff;
+}
+/* FIN LOGIN */
